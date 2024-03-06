@@ -13,6 +13,7 @@ dataset = {
     "How many continents are there?": "There are seven continents : Africa, Antarctica, Asia, Europe, North America, South America, and Australia.",
     "How many pounds are in a ounce?" : "There are 16 ounces in a pound."
 }
+greet=["hi","hello","hey","hiii","hey there","there"]
 
 
 # Function to find the most relevant question in the dataset
@@ -42,6 +43,8 @@ def search_pdf():
     most_relevant_question = find_most_relevant_question(user_question, dataset)
     if user_question.lower() == "exit":
         return jsonify({'message': "Thank you"})
+    elif user_question.lower() in greet:
+        return jsonify({'message': "Hi, i will help you with xyz topic.Please ask your query"})
     elif most_relevant_question:
         bot_message = dataset.get(most_relevant_question, "Sorry, I couldn't find a relevant answer.")
         return jsonify({'message': bot_message})
